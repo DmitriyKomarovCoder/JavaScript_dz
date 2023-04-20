@@ -1,7 +1,7 @@
-import {PopUp} from "../../components/pop-up/index.js";
 import {ProductComponent} from "../../components/product/index.js";
 import {BackButtonComponent} from "../../components/back-button/index.js";
 import {MainPage} from "../main/index.js";
+import { PopUp } from "../../components/pop-up/index.js";
 
 export class ProductPage {
     constructor(parent, id) {
@@ -11,7 +11,7 @@ export class ProductPage {
 
     getData() {
         if (this.id == 1) {
-            return { 
+            return {
                 id: 1,
                 src: "/media/по-дох-1000x650.jpg",
                 title: `Абсолютная доходность + Рискованный`,
@@ -42,12 +42,14 @@ export class ProductPage {
         return (
             `
                 <div id="product-page"></div>
+            
             `
         )
     }
 
     clickBack() {
         const mainPage = new MainPage(this.parent)
+        
         mainPage.render()
     }
 
@@ -65,6 +67,8 @@ export class ProductPage {
         stock.render(data)
 
         const popup = new PopUp(this.pageRoot)
-        popup.render(data)
+        this.pageRoot.insertAdjacentHTML('beforeend', popup.getHTML())
+        popup.render()
+        // popup.toast('show')
     }
 }
